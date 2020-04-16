@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>vb_1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="1-vba-%E3%81%AE%E5%9F%BA%E7%A4%8E%E3%81%A8-vbe-%E3%81%AE%E6%93%8D%E4%BD%9C">1. VBA の基礎と VBE の操作</h1>
+<p>この章では VBA の基本的な内容を学習し、コードを記述するための<br>
+準備を進めて行きます。</p>
+<br>
+<h2 id="%E2%97%86vba">◆VBA</h2>
+<p>Visual Basic for Application の略称で、Excel で動く VB です。<br>
+VB は Microsoft が開発したプログラミング言語で、Windows で<br>
+動くソフトウェアを開発するための言語です。</p>
+<p>VBA を使う事で値を自動で処理したり、セルに関数を入力する事なく<br>
+関数を使用する事が可能となります。また、VBA を使って作成された<br>
+プログラムを「マクロ」と言います。</p>
+<img src="Excel.png">
+<br>
+<h2 id="%E2%97%86vbe">◆VBE</h2>
+<p>Visual Basic Editor の略称で、Excel で VBA を使うためのエディタです。<br>
+Alt + F11 で呼び出す事ができ、主にこの中でコードを記述していきます。<br>
+まずは Excel ファイルを作成し、Alt + F11 で VBE を開く事から始めましょう。<br>
+次の項目からは VBE の画面と操作方法を説明して行きます。</p>
+<img src="vbe.png">
+<br>
+<h3 id="%E2%97%8Fvbe-%E3%81%AE%E8%A8%AD%E5%AE%9A">●VBE の設定</h3>
+<p>まずは VBE を設定して行きます。初期設定の状態でも利用可能ですが、<br>
+フォントや背景色の変更方法を認識してもらうため、解説します。<br>
+VBE 上部から、ツール &gt; オプション &gt; エディターの設定 をクリックします。<br>
+その後、以下の項目の値を変更しましょう。</p>
+<blockquote>
+<p>・標準コード　 前景：黄緑　 背景：黒<br>
+・コメント　　 前景：黄緑　 背景：黒<br>
+・キーワード　 前景：水色　 背景：黒<br>
+・識別子　　　 前景：白　　 背景：黒</p>
+</blockquote>
+<br>
+<h3 id="%E2%97%8Fvba-%E3%81%AE%E5%9F%BA%E6%9C%AC%E7%94%A8%E8%AA%9E">●VBA の基本用語</h3>
+<p>主に以下の用語を理解すれば ひと通りの VBA 操作が可能となります。</p>
+<blockquote>
+<p>・VBA：Excel や Access で動くプログラミング言語<br>
+・マクロ：VBA で記述されたプログラム<br>
+・プロシージャ：マクロの最小単位<br>
+・ステートメント：プロシージャ内に記述される文<br>
+・キーワード：VBA に登録されている単語(予約語)<br>
+・コメント：マクロに影響を与えないメモ</p>
+</blockquote>
+<blockquote>
+<p>・モジュール：マクロを作成するシート(場所)<br>
+・プロジェクト：モジュールの集合</p>
+</blockquote>
+<blockquote>
+<p>・オブジェクト：ワークシート、セルなどの Excel の部品<br>
+・プロパティ：オブジェクトが持つデータ<br>
+・メソッド：オブジェクトを操作する時の命令</p>
+</blockquote>
+<p>別の章での解説や、実際に使用してみて理解を深めましょう。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%A8%E3%83%97%E3%83%AD%E3%82%B7%E3%83%BC%E3%82%B8%E3%83%A3%E3%81%AE%E4%BD%9C%E6%88%90">● モジュールとプロシージャの作成</h3>
+<p>VBE でマクロを作成する第一段階は、標準モジュールの作成です。<br>
+左側のメニュー内のプロジェクトにカーソルを合わせたら、<br>
+右クリック → 挿入 → 標準モジュール の順番にクリックし、<br>
+新規のモジュールを作成しましょう。</p>
+<p>モジュールを作成したら、右側のコードエリアにプロシージャを記述します。<br>
+以下のコードがプロシージャの基本構成です。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> プロシージャ名()
+    実行処理
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>ポイントは、Sub ～ End Sub で囲む事と、プロシージャ名()を<br>
+記述する事です。また、VBE には自動変換機能と入力候補機能が<br>
+あるため、必ずしも手動で全て入力する必要はありません。</p>
+<p>例えば「sub プロシージャ名」まで入力した後に、矢印キーの ↓ を<br>
+押すと、() と End Sub が補完されます。次の演習で練習しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+実行は再生マークをクリックするか、F5キーをタイプします。<br>
+また、プロシージャが複数ある場合は、カーソルが位置する<br>
+プロシージャが実行されます。
+<blockquote>
+<p>「sub greeting + ↓ 」で自動変換<br>
+「ms + ctrl + space」で入力候補の MsgBox を選択して Tab キー <br></p>
+</blockquote>
+<p>※ コメント部分は記述不要です。<br></p>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> greeting()
+    <span class="hljs-comment">'MsgBoxステートメントでメッセージボックスを表示</span>
+    MsgBox <span class="hljs-string">"Hello World"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・コードの文末に ; (セミコロン)は不要<br>
+・文字列は " " (ダブルクォーテーション)で囲む<br>
+・スペース + _ (アンダーバー)で改行が可能<br>
+・' (シングルクオーテーション)でコメント化<br>
+</div>
+<br>
+<h3 id="%E2%97%8F-%E9%96%A2%E6%95%B0">● 関数</h3>
+<p>上記の演習に MsgBox というキーワードがありました。これは関数と<br>
+よばれるもので、「目的の処理を実施するための Excel に元々用意<br>
+されている数式」を指します。SUM や Average のように、セルに数式<br>
+として入力可能な関数を「ワークシート関数」、VBA のみで利用可能な<br>
+関数を「VBA 関数」といいます。</p>
+<p>オブジェクトに対して操作に関する命令をメソッドと説明しましたが、<br>
+関数も用いられます。適宜学習して行きましょう。</p>
+<br>
+<h3 id="%E2%97%8F-%E5%A4%89%E6%95%B0">● 変数</h3>
+<p>変数とはデータを格納する「箱」の役割を持つ文字列です。<br>
+格納する際はデータの種類である「型」を宣言します。<br>
+型を宣言する事で、変数に格納する値を制御する事が出来ます。</p>
+<p>変数の設定には以下のルールがあります。</p>
+<blockquote>
+<p>・スペースや記号は利用不可<br>
+・大文字、小文字の区別がない</p>
+</blockquote>
+<p>データ型の宣言は、以下の記述を行います。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Dim</span> 変数名 <span class="hljs-keyword">As</span> データ型
+</div></code></pre>
+<p>データ型は以下の種類などがあります。</p>
+<blockquote>
+<p>・Integer：整数型<br>
+・Long：長数型<br>
+・String：文字列型<br>
+・Object：オブジェクト型<br>
+・Boolean：論理型(True/False)<br>
+・Date：日付型</p>
+</blockquote>
+<p>VBA の記述において、変数の宣言は必須ではありません。<br>
+しかし、コードミスを防ぐ手段でもあるため、本勉強会では<br>
+変数の宣言を推奨しています。次の演習を実行し、変数の<br>
+宣言を体験しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+変数の宣言を必ず行うよう、以下に沿ってVBEの設定を変更しましょう。<br>
+<blockquote>
+<p>ツール &gt; オプション &gt; 編集タブ &gt; 変数の宣言を強制する(R)をチェック<br>
+標準モジュールを右クリックして、標準モジュールを挿入<br>
+Option Explicit の記述がある事を確認し、以下のコードを記述して実行する。</p>
+</blockquote>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> test()
+    i = <span class="hljs-number">0</span>
+    MsgBox i
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>実行結果を確認後、以下のコードに修正して実行する。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> test()
+    <span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    i = <span class="hljs-number">0</span>
+    MsgBox i
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p><br><br></p>
+<hr>
+<h1 id="2-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">2. オブジェクト</h1>
+<p>この章では、オブジェクトについて学習します。一般的な<br>
+プログラミング言語にもオブジェクトの概念は出て来ますが、<br>
+VBA では少し違った定義を持つので、しっかりと理解していきましょう。</p>
+<br>
+<h2 id="%E2%97%86-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%A8%E3%81%AF">◆ オブジェクトとは</h2>
+<p>元々は「モノ・コト(対象)」の意味を持つ単語で、「性質や値を<br>
+所有するデータ群」と定義されます。詳細は後の章で解説しますが、<br>
+オブジェクトが持つデータの事をプロパティ、オブジェクトに対して<br>
+実行される操作をメソッドと言います。</p>
+<p>人をオブジェクトと見なした場合、頭(オブジェクト)には<br>
+顔(オブジェクト)があり、顔(オブジェクト)には目、鼻、耳、口<br>
+といったオブジェクトが含まれます。プロパティの例としては、<br>
+「私の頭 &gt; 顔 &gt; 目の数 = 2 つ」と言えますし、メソッドの場合は<br>
+「私の頭 &gt; 顔 &gt; 口 &gt; 歯 &gt; 前歯 を治療する」と表す事が出来ます。</p>
+<br>
+<h3 id="%E2%97%8Fvba-%E3%81%AE%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">●VBA のオブジェクト</h3>
+<p>VBA では、処理の対象となるもの全てをオブジェクトと定義しています。<br>
+つまり、ワークシートやセルなど、通常の Excel 操作で利用するものを<br>
+オブジェクトと見なし、それぞれにオブジェクト名が設定されています。<br>
+VBA で利用可能なオブジェクトは 200 個を超えるので、まずは代表的な<br>
+オブジェクトについて学習して行きましょう。</p>
+<br>
+<h4 id="%E3%83%BBapplication-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">・Application オブジェクト</h4>
+<blockquote>
+<p>Excel を対象とするオブジェクトで、VBA では最も大きい<br>
+オブジェクトと言えます。</p>
+</blockquote>
+<h4 id="%E3%83%BBworkbook-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">・Workbook オブジェクト</h4>
+<blockquote>
+<p>Excel ブックを対象とするオブジェクトです。</p>
+</blockquote>
+<h4 id="%E3%83%BBworksheet-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">・Worksheet オブジェクト</h4>
+<blockquote>
+<p>「ワークシート」を対象とするオブジェクトで、シートの移動や<br>
+削除、シート名の変更などで指定されます。</p>
+</blockquote>
+<h4 id="%E3%83%BBrange-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">・Range オブジェクト</h4>
+<blockquote>
+<p>セルを対象とするオブジェクトで、値の入力や削除、<br>
+計算結果の出力などで指定されます。後の章で解説する<br>
+Cells プロパティと合わせて、セルの指定に用いられます。</p>
+</blockquote>
+<h4 id="%E3%83%BBfont-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">・Font オブジェクト</h4>
+<blockquote>
+<p>セル内の文字列の書式設定を表すオブジェクトで、サイズや<br>
+色、太字や下線などのプロパティを持ちます。</p>
+</blockquote>
+<br>
+<h3 id="%E2%97%8F-%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">● コレクション</h3>
+<p>コレクションとは、オブジェクトの集合体を指します。<br>
+例えばブックには、ワークシートがたくさん含まれます。つまり、<br>
+上層のオブジェクト(親)に対して下層のオブジェクト(子)は<br>
+集合体であり、オブジェクト名の複数形でコレクションと<br>
+表す事が出来ます。以下は代表的なコレクションです。</p>
+<blockquote>
+<p>・Worksheets コレクション：ワークシート<br>
+・Rows コレクション：セルの行<br>
+・Columuns コレクション：セルの列</p>
+</blockquote>
+<p>なお、Range オブジェクトは、単体のセルも 複数のセルも含まれる<br>
+ため、Ranges コレクションは使用しません。注意しましょう。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E8%A8%98%E8%BF%B0%E6%96%B9%E6%B3%95">● オブジェクトの記述方法</h3>
+<p>実際にコードを書く際は、操作対象のオブジェクトを指定する必要があります。<br>
+その場合、いくつかのルールが定められています。</p>
+<blockquote>
+<p>(1)親オブジェクトから順番に .(ドット)で繋げる<br>
+(2)アクティブなオブジェクトを指定する場合、親オブジェクトの記述は不要<br>
+(3)アクティブではないオブジェクトを指定する場合は、コレクションから<br>
+該当のオブジェクトを指定する。</p>
+</blockquote>
+<p>実際のケースを見ながら学習して行きますので、現段階では頭に留める程度で<br>
+問題ないです。</p>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。また、test2のマクロを実行する前に、<br>
+ワークシートを1つ追加しておきましょう。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> test1()
+    <span class="hljs-comment">'アクティブなワークシートのセル範囲を指定</span>
+    Range(<span class="hljs-string">"A1:D5"</span>).Value = <span class="hljs-number">100</span>
+    Range(<span class="hljs-string">"A1"</span>).Font.Bold = <span class="hljs-literal">True</span>
+    Range(<span class="hljs-string">"B1"</span>).Font.Color = vbRed
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> test2()
+    <span class="hljs-comment">'ワークシートコレクション内の1番目と2番目のシートを指定</span>
+    Worksheets(<span class="hljs-number">1</span>).Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-string">"ワークシート1"</span>
+    Worksheets(<span class="hljs-number">2</span>).Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-string">"ワークシート2"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+コメントに記載ある通り、test1はアクティブなシートのセルへ、<br>  
+test2は 2つのワークシートそれぞれのセルに対して値を入力しています。<br>  
+次の章で解説しますが、ここでは Valueプロパティが用いられています。<br>  
+セルの値を表すプロパティで、= の右辺側のデータ値を指定したオブジェクト<br>  
+へ格納しています。
+また vbRedは、Excelで赤のカラーネームを指定する際のキーワードです。
+</div>
+<br>
+<hr>
+<h1 id="3-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">3. プロパティ</h1>
+<p>この章ではプロパティについて学習して行きます。セルの値入力など、<br>
+VBA 操作で必須の概念となりますので、しっかりと理解して行きましょう。</p>
+<br>
+<h2 id="%E2%97%86-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%A8%E3%81%AF">◆ プロパティとは</h2>
+<p>前章の説明で、オブジェクトには性質や値(プロパティ)が含まれると<br>
+お伝えしました。各オブジェクトには複数のプロパティが存在し、<br>
+対応するプロパティを指定して、値の取得や設定を行います。<br>
+また、プロパティには同じ名前で別のオブジェクトに利用可能な<br>
+もの(color プロパティ等)もありますので、頭に入れておきましょう。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%AE%E8%A8%98%E8%BF%B0%E6%96%B9%E6%B3%95">● プロパティの記述方法</h3>
+<p>プロパティはオブジェクトを対象に用いられます。そのため、<br>
+「オブジェクト.プロパティ」を基本の記述方法とします。</p>
+<p>前章でも説明した通り、アクティブなワークシートやセルに<br>
+対して処理を行う場合、親オブジェクトは記述が不要です。<br>
+非アクティブなオブジェクトを対象とする場合、<br>
+「親オブジェクト.子オブジェクト.プロパティ」の様に<br>
+必要な分だけ 「オブジェクト」と「.」を繋げます。</p>
+<p>以下で解説する代表的なプロパティを学習し、プロパティの<br>
+使い方に慣れて行きましょう。</p>
+<br>
+<h2 id="%E2%97%86-cells-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">◆ Cells プロパティ</h2>
+<p>セルを指定するためのプロパティです。「Cells(行番号, 列番号)」<br>
+と記述する事でセルの場所を指定できます。非アクティブなセルを<br>
+する場合は、「Worksheet オブジェクト.Cells(行番号, 列番号)」<br>
+と記述します。</p>
+<br>
+<h2 id="%E2%97%86-value-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">◆ Value プロパティ</h2>
+<p>セルの値を表すプロパティです。Range オブジェクトや Cells<br>
+プロパティとセットで用いられ、セルの値の取得や、別の値の
+入力が可能です。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> test1()
+    <span class="hljs-comment">'Cellsプロパティでセルを指定、Valueプロパティで値を入力</span>
+    Cells(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>).Value = <span class="hljs-number">100</span>
+    Cells(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>).Value = <span class="hljs-number">200</span>
+    Cells(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>).Value = <span class="hljs-number">300</span>
+    Cells(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>).Value = <span class="hljs-number">400</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>上記 2 つのプロパティは、いずれも利用頻度の高いプロパティです。<br>
+この先の演習でも出て来ますので、少しずつ慣れて行きましょう。</p>
+<br>
+<h3 id="%E2%97%8F-name-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">● Name プロパティ</h3>
+<blockquote>
+<p>ワークシートの名前を返します。</p>
+</blockquote>
+<h3 id="%E2%97%8F-color-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">● Color プロパティ</h3>
+<blockquote>
+<p>色を取得または設定します。</p>
+</blockquote>
+<h3 id="%E2%97%8F-columnwidth-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">● ColumnWidth プロパティ</h3>
+<blockquote>
+<p>列幅を指定します。</p>
+</blockquote>
+<h3 id="%E2%97%8F-rowheight-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">● RowHeight プロパティ</h3>
+<blockquote>
+<p>行の高さを指定します。</p>
+</blockquote>
+<h3 id="%E2%97%8F-formula-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">● Formula プロパティ</h3>
+<blockquote>
+<p>セルに数式を入力したり、入力されている数式を取得します。</p>
+</blockquote>
+<h3 id="%E2%97%8F-interior-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">● Interior プロパティ</h3>
+<blockquote>
+<p>セルの塗りつぶし属性を表し、Color プロパティと合わせる事で<br>
+セル色を指定する事ができます。</p>
+</blockquote>
+<h3 id="%E2%97%8F-displayalerts-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">● DisplayAlerts プロパティ</h3>
+<blockquote>
+<p>警告やメッセージの表示/非表示を設定します。False を設定する事で<br>
+警告がでなくなるため、ワークシートの削除時などに用いられます。</p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。また、test2のマクロを実行する前に、<br>
+ワークシートを1つ追加しておきましょう。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> test1()
+    Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-number">100</span>
+    Cells(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>).Interior.Color = vbRed
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> test2()
+    Worksheets(<span class="hljs-number">1</span>).Range(<span class="hljs-string">"A:C"</span>).ColumnWidth = <span class="hljs-number">6</span>
+    Worksheets(<span class="hljs-number">2</span>).Range(<span class="hljs-string">"A1"</span>).RowHeight = <span class="hljs-number">50</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<hr>
+<h1 id="4-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">4. メソッド</h1>
+<h2 id="%E2%97%86-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E3%81%AF">◆ メソッドとは</h2>
+<p>オブジェクトに対して指定する操作の事をメソッドと呼びます。記述方法は<br>
+プロパティと同様に「オブジェクト.メソッド」が基本となっています。</p>
+<h3 id="%E2%97%8F-%E5%BC%95%E6%95%B0">● 引数</h3>
+<p>メソッドには引数を指定できる場合があります。引数とは、簡単に<br>
+説明すると「メソッドをより詳しく指定する値」と言えます。例えば、<br>
+「ワークシートを新しく追加する」というメソッドは、それだけでも<br>
+操作として成立していますが、引数を設定する事で「どのワークシートの、<br>
+どこ(前/後)に、いくつ追加する」という事を指定出来るようになります。</p>
+<p>以下の代表的なメソッドを学習して行きましょう。</p>
+<br>
+<h3 id="%E2%97%8Fcopy-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Copy メソッド</h3>
+<blockquote>
+<p>指定したセル範囲のデータをコピーします。Worksheet オブジェクトと<br>
+Range オブジェクトの両方で利用可能です。記述方法は、<br>
+「Worksheet オブジェクト.Copy Before/After」または<br>
+「Range オブジェクト.Copy 貼り付け先のセル」となります。</p>
+</blockquote>
+<h3 id="%E2%97%8Fclear-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Clear メソッド</h3>
+<blockquote>
+<p>指定したセル範囲のデータを完全にクリアします。</p>
+</blockquote>
+<h3 id="%E2%97%8Fadd-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Add メソッド</h3>
+<blockquote>
+<p>指定した場所に新しいワークシートを追加します。</p>
+</blockquote>
+<h3 id="%E2%97%8Fdelete-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Delete メソッド</h3>
+<blockquote>
+<p>指定したワークシートを削除します。</p>
+</blockquote>
+<h3 id="%E2%97%8Fselect-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Select メソッド</h3>
+<blockquote>
+<p>Application オブジェクトに対して指定され、アクティブな<br>
+セルがあるワークシートを取得します。</p>
+</blockquote>
+<h3 id="%E2%97%8Factivate-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Activate メソッド</h3>
+<blockquote>
+<p>指定したワークシートをアクティブにするメソッドです。</p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> test1()
+    Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-number">1</span>
+    Range(<span class="hljs-string">"A1"</span>).Copy Range(<span class="hljs-string">"B1:D3"</span>)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> test2()
+    Range(<span class="hljs-string">"C2"</span>).Clear
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> test3()
+    <span class="hljs-comment">'1番目のワークシートを、1番目のワークシートの後ろに複製する</span>
+    <span class="hljs-comment">'「After:=Worksheets(1)」は引数の指定</span>
+    Worksheets(<span class="hljs-number">1</span>).Copy After:=Worksheets(<span class="hljs-number">1</span>)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> test4()
+    Worksheets(<span class="hljs-number">1</span>).Delete
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8Fspeak-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Speak メソッド</h3>
+<blockquote>
+<p>Speech オブジェクトまたは Range オブジェクトで指定された値を読み上げるメソッドです。</p>
+</blockquote>
+<h3 id="%E2%97%8F-inputbox-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">● InputBox メソッド</h3>
+<blockquote>
+<p>ユーザーに文字列や数値を入力させるダイアログボックスです。</p>
+</blockquote>
+<h3 id="%E2%97%8Fprintout-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●PrintOut メソッド</h3>
+<blockquote>
+<p>指定した範囲のデータを印刷するためのメソッドです。</p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> announce()
+    Application.Speech.Speak <span class="hljs-string">"Please enter"</span>
+    MsgBox <span class="hljs-string">"入力して下さい"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> name_box()
+    <span class="hljs-keyword">Dim</span> name_box <span class="hljs-keyword">As</span> <span class="hljs-built_in">String</span>
+    name_box = InputBox(<span class="hljs-string">"名前を入力してください"</span>)
+    Range(<span class="hljs-string">"C1"</span>) = name_box
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<h2 id="%E2%97%86-%E3%81%93%E3%81%93%E3%81%BE%E3%81%A7%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81">◆ ここまでのまとめ</h2>
+<p>オブジェクト・プロパティ・メソッドについて学習して来ました。<br>
+マクロは主にこれらの組み合わせで構成されているため、基礎学習の<br>
+ひと区切りと言えます。改めておさらいしましょう。</p>
+<blockquote>
+<p>オブジェクト：Excel を構成するパーツ(ワークシート、セルなど)<br>
+プロパティ：オブジェクトの性質・データ<br>
+メソッド： オブジェクトへの処理及び動作</p>
+</blockquote>
+<p>また、VBA の基本文法は以下の 3 つに代表されます。</p>
+<blockquote>
+<p>(1) オブジェクト.メソッド + 引数名:=引数<br>
+(2) オブジェクト.プロパティ = プロパティの値<br>
+(3) 変数 = オブジェクト.プロパティ / メソッド</p>
+</blockquote>
+<p>次に説明する内容は、VBA をしっかりと理解するために必要な内容<br>
+ですが、分かりにくいと感じる場合は、ひとまず飛ばしても大丈夫です。</p>
+<br>
+<h2 id="%E2%97%86-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%A8%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%AE%E9%96%A2%E4%BF%82">◆ オブジェクトとプロパティの関係</h2>
+<p>オブジェクトは Excel を構成するパーツで、プロパティはオブジェクトの<br>
+データであると説明しました。この内容に誤りはありませんが、正確には<br>
+もう少し説明が必要です。</p>
+<p>オブジェクトとプロパティは同一の役割を果たす事があります。例えば、<br>
+Worksheets().Range()と記述した場合、Range はオブジェクトですが<br>
+プロパティでもあります。つまり、Worksheet オブジェクトに対して<br>
+Range プロパティを使用し、その結果 Range オブジェクトを取得しています。</p>
+<p>Worksheetx().Cells()の場合も、Cells プロパティを使って、Range<br>
+オブジェクトを取得しています。<br>
+このように、プロパティがオブジェクトに対して反映された後、オブジェクト<br>
+として扱われる性質があるため、プロパティに対してプロパティを紐づける
+事も可能です。<br>
+これまでの例では「Cells プロパティ.Value プロパティ(セルの値を取得)」や、<br>
+「Range オブジェクト.Interior プロパティ.Color プロパティ(セル色の塗りつぶし)」<br>
+などが該当します。</p>
+<br>
+<hr>
+<h1 id="5%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E5%87%A6%E7%90%861">5.繰り返し処理(1)</h1>
+<p>この章では、作業の自動化に必要な機能である「繰り返し処理」について<br>
+学習して行きます。</p>
+<br>
+<h2 id="%E2%97%86for-next">◆For Next</h2>
+<p>同じ処理を指定した回数繰り返すステートメントです。</p>
+<p>[基本構文]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> 繰り返し()
+    <span class="hljs-keyword">Dim</span> 変数 <span class="hljs-keyword">As</span> <span class="hljs-built_in">Long</span>
+
+    <span class="hljs-keyword">For</span> 変数 = 開始 <span class="hljs-keyword">To</span> 終了
+        処理
+    <span class="hljs-keyword">Next</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>繰り返し処理の構文では、ループ回数をカウントする<br>
+カウント変数を設定します。そのため、初めに Dim<br>
+ステートメントで Long 型を宣言しています。その後は<br>
+変数を繰り返す回数を指定し、実行したい処理を Next<br>
+で囲んでいます。</p>
+<p>早速ですが、次の演習を実行しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> for_test1()
+    <span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Long</span>
+    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">10</span>
+        Cells(i, <span class="hljs-number">1</span>).Value = <span class="hljs-number">10</span>
+    <span class="hljs-keyword">Next</span> i
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> for_test2()
+    <span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Long</span>
+    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">10</span>
+        Cells(i, <span class="hljs-number">2</span>).Value = i
+    <span class="hljs-keyword">Next</span> i
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+<p>カウンタ変数を i にして宣言し、1 から 10 を指定します。<br>
+実行処理は Cells オブジェクトに対して Value プロパティを<br>
+指定しているため、セル内に値が入力されます。</p>
+<p>for_test1 プロシージャでは、A 列のセルに対して<br>
+「値 10 を 1 ～ 10 行まで入力」の処理を実行しています。<br>
+for_test2 プロシージャでは、B 列のセルに対して<br>
+「変数 i を 1 ～ 10 行まで入力」の処理を実行しています。</p>
+</div>
+<br>
+<h2 id="%E2%97%86for-each-next">◆For Each Next</h2>
+<p>For Each Next は、コレクションや配列に対して繰り返し<br>
+処理を設定できる構文です。基本構文は以下のと通りです。</p>
+<p>[基本構文]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> 繰り返し()
+    <span class="hljs-keyword">Dim</span> 変数名 <span class="hljs-keyword">As</span> 型
+	<span class="hljs-keyword">For</span> <span class="hljs-keyword">Each</span> 変数名 <span class="hljs-keyword">In</span> オブジェクト
+		実行処理
+	<span class="hljs-keyword">Next</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>変数にはオブジェクトが格納されます。次の演習で感覚を掴みましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> sheet_named()
+    Worksheets.Add After:=Worksheets(<span class="hljs-number">1</span>), Count:=<span class="hljs-number">2</span>
+    Worksheets(<span class="hljs-number">1</span>).Name = <span class="hljs-string">"first"</span>
+    Worksheets(<span class="hljs-number">2</span>).Name = <span class="hljs-string">"second"</span>
+    Worksheets(<span class="hljs-number">3</span>).Name = <span class="hljs-string">"third"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> sheet_name_msg()
+    <span class="hljs-keyword">Dim</span> name_msg <span class="hljs-keyword">As</span> <span class="hljs-built_in">Object</span>
+    <span class="hljs-keyword">For</span> <span class="hljs-keyword">Each</span> name_msg <span class="hljs-keyword">In</span> Sheets
+        MsgBox name_msg.Name
+    <span class="hljs-keyword">Next</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+<p>sheet_named()プロシージャでは、Add メソッドを用いて<br>
+ワークシートを 2 枚追加しています。After は挿入する位置関係、<br>
+Worksheets(1)は対象のワークシート、count:=2 はシートの<br>
+枚数を指定しています。</p>
+<p>sheet_name_msg()プロシージャでは、変数 name_msg をオブジェクト型で<br>
+宣言します。Fro Each で sheets オブジェクトを name_msg に格納し、<br>
+Name プロパティで取得したワークシートの名前をメッセージボックスに<br>
+表示させています。</p>
+</div>
+<p><br><br></p>
+<hr>
+<h1 id="6%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E5%87%A6%E7%90%862">6.繰り返し処理(2)</h1>
+<p>前章では、繰り返し処理として、For Next 構文を学習しました。<br>
+VBA では、別の構文でも繰り返し処理を記述できますので、学習<br>
+して行きましょう。</p>
+<br>
+<h2 id="%E2%97%86do-loop-until">◆Do Loop Until</h2>
+<p>この構文では設定された終了条件が True になるまで、<br>
+処理を繰り返す特徴があります。基本コードは以下となります。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> DoLoop()
+    <span class="hljs-keyword">Do</span>
+        実行処理
+    <span class="hljs-keyword">Loop</span> <span class="hljs-keyword">Until</span> 終了条件
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>For Next 構文では「1 to 10」のように、繰り返し回数が<br>
+指定されていました。Do Loop Until 構文では繰り返し<br>
+回数の指定がなく、終了条件が記述されます。<br>
+次の演習を実施し、Do Loop Until 構文に慣れて行きましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> DoLoop_test1()
+    <span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Long</span>
+    i = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">Do</span>
+        i = i + <span class="hljs-number">1</span>
+        MsgBox i
+    <span class="hljs-keyword">Loop</span> <span class="hljs-keyword">Until</span> i &gt; <span class="hljs-number">2</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+</div></code></pre>
+<p>マクロを実行すると、メッセージボックスが 3 回表示されました。<br>
+ループが 1 回処理される度に i が 1 ずつ増え、3 になったタイミングで<br>
+終了条件 i &gt; 2 を満たしたため、ループが終わるという流れでした。</p>
+<p>次は、もう少し実践的なコードを記述してみましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> fill_cells1()
+    Range(<span class="hljs-string">"A1:A10"</span>).Value = <span class="hljs-number">1</span>
+    Range(<span class="hljs-string">"A1"</span>).<span class="hljs-keyword">Select</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> DoLoop_test2()
+    <span class="hljs-keyword">Do</span>
+        ActiveCell.Interior.Color = vbYellow
+        Selection.Offset(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>).<span class="hljs-keyword">Select</span>
+    <span class="hljs-keyword">Loop</span> <span class="hljs-keyword">Until</span> ActiveCell.Value = <span class="hljs-string">""</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<p>上記のマクロを実行すると、値を含むセルに対して色が黄色に<br>
+変更されました。詳細な解説は以下の内容になります。</p>
+<blockquote>
+<p>・Range(&quot;A1&quot;).Select ：A1 セルを選択する<br>
+・ActiveCell オブジェクト：選択されたセルを指定する<br>
+・Interior：塗りつぶし属性を取得するプロパティ<br>
+・vbYellow：VBA の予約語の 1 つで、黄色を指定する<br>
+・Selection プロパティ：アクティブなウインドウで選択されているオブジェクト</p>
+</blockquote>
+<br>
+<h2 id="%E2%97%86do-loop-while">◆Do Loop while</h2>
+<p>この構文では設定された終了条件が False になるまで<br>
+処理を繰り返します。基本コードは以下となります。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> DoLoop()
+    <span class="hljs-keyword">Do</span>
+        実行処理
+    <span class="hljs-keyword">Loop</span> <span class="hljs-keyword">while</span> 繰り返し条件
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>Do Loop Until と異なるのは、繰り返し条件を指定する部分です。<br>
+次の演習を実施しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+また、前回のコード結果がセルに残っている場合は、削除しましょう。<br>
+VBAで実行する場合は、以下のコードを実行します。
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> all_clear()
+    Cells.Clear
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> fill_cells2()
+    Range(<span class="hljs-string">"A1:A5"</span>).Value = <span class="hljs-number">5</span>
+    <span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+        <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">5</span>
+        Cells(i, <span class="hljs-number">2</span>).Value = i
+        <span class="hljs-keyword">Next</span> i
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> do_loop_while()
+    <span class="hljs-keyword">Dim</span> j <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    j = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">Do</span>
+        Cells(j, <span class="hljs-number">3</span>).Value = Cells(j, <span class="hljs-number">1</span>).Value * Cells(j, <span class="hljs-number">2</span>).Value
+         j = j + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">Loop</span> <span class="hljs-keyword">While</span> Cells(j, <span class="hljs-number">1</span>).Value &lt;&gt; <span class="hljs-string">""</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>Loop While の後ろに記述した「Cells(j, 1).Value &lt;&gt; &quot;&quot;」は、<br>
+セルに何か値が入力されている状態 を意味しています。<br>
+そのため、セルが空白になるまで、処理が実行されます。</p>
+<br>
+<hr>
+<h1 id="7-%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B2%901">7. 条件分岐(1)</h1>
+<p>この章では、マクロ作成の要である条件分岐を学習します。<br>
+目的の処理を達成するために必要な要素を考えながら、<br>
+学習を進めて行きましょう。</p>
+<br>
+<h2 id="%E2%97%86-%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B2%90%E3%81%A8%E3%81%AF">◆ 条件分岐とは</h2>
+<p>「もし A であれば〇〇をする。B であれば □□ をする。」のように、<br>
+条件によって処理内容を変化させるしくみの事です。<br>
+条件分岐は VBA で機能を実装する際にとてもよく使われますので、<br>
+しっかり学習して行きましょう。</p>
+<br>
+<h3 id="%E2%97%8Fif-then-%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88">●If Then ステートメント</h3>
+<p>条件分岐の基本となる構文で、以下の記述が基本となります。</p>
+<p>[基本構文]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> 条件分岐<span class="hljs-number">1</span>()
+    <span class="hljs-keyword">If</span> 条件式 <span class="hljs-keyword">Then</span>
+        処理
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">if</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>条件式とは「もし〇〇であれば」の〇〇に当たり、<br>
+真偽値(True または False)が返ってくる必要があります。<br>
+まずは次の演習を実践して行きましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述して VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> enter100()
+    Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-number">100</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> if_sample1()
+    <span class="hljs-keyword">If</span> Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-number">100</span> <span class="hljs-keyword">Then</span>
+        MsgBox <span class="hljs-string">"100が入っています。"</span>
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">if</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E8%A4%87%E6%95%B0%E3%81%AE%E5%87%A6%E7%90%86">● 複数の処理</h3>
+<p>上記のコードは、A1 セルに 100 が入力されている場合にのみ、<br>
+処理を実行しました。次は、100 以外の値が入力されていた<br>
+場合に処理が実行される記述方法を学習します。</p>
+<p>[基本構文]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> 条件分岐<span class="hljs-number">2</span>()
+    <span class="hljs-keyword">If</span> 条件式 <span class="hljs-keyword">Then</span>
+        処理A
+    <span class="hljs-keyword">Else</span>
+        処理B
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">if</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>条件に当てはまらない際の処理を記述するには、Else を追加します。<br>
+次の演習を実行して感覚を掴みましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述して VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> enter10()
+    Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-number">10</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> if_sample2()
+    <span class="hljs-keyword">If</span> Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-number">100</span> <span class="hljs-keyword">Then</span>
+        MsgBox <span class="hljs-string">"100が入っています。"</span>
+    <span class="hljs-keyword">Else</span>
+        MsgBox <span class="hljs-string">"100以外が入っています。"</span>
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">if</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>実行すると、Else 以下の処理が実行されました。<br>
+さらに複数の処理を記述する場合は、ElseIf を使用します。</p>
+<p>[基本構文]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> 条件分岐<span class="hljs-number">3</span>()
+    <span class="hljs-keyword">If</span> 条件式<span class="hljs-number">1</span> <span class="hljs-keyword">Then</span>
+        処理A
+    <span class="hljs-keyword">ElseIf</span> 条件式<span class="hljs-number">2</span> <span class="hljs-keyword">Then</span>
+        処理B
+    <span class="hljs-keyword">ElseIf</span> 条件式<span class="hljs-number">3</span> <span class="hljs-keyword">Then</span>
+        処理C
+    <span class="hljs-keyword">Else</span>
+        処理D
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">if</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>別の処理を追加する場合は、ElseIf 条件式 Then を記述します。<br>
+それでは演習に進みましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、100、80、60、40をA1セルに入力した際のマクロ実行結果を確認しましょう。<br>
+※ 値を変更した後に、Excelの上書き保存を忘れない事
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> test_score()
+    <span class="hljs-keyword">If</span> Range(<span class="hljs-string">"A1"</span>).Value &gt; <span class="hljs-number">90</span> <span class="hljs-keyword">Then</span>
+        MsgBox <span class="hljs-string">"はなまるです！"</span>
+
+    <span class="hljs-keyword">ElseIf</span> Range(<span class="hljs-string">"A1"</span>).Value &gt; <span class="hljs-number">70</span> <span class="hljs-keyword">Then</span>
+        MsgBox <span class="hljs-string">"よくできました！"</span>
+
+    <span class="hljs-keyword">ElseIf</span> Range(<span class="hljs-string">"A1"</span>).Value &gt; <span class="hljs-number">50</span> <span class="hljs-keyword">Then</span>
+        MsgBox <span class="hljs-string">"まずまずです"</span>
+
+    <span class="hljs-keyword">Else</span>
+        MsgBox <span class="hljs-string">"もっとがんばりましょう"</span>
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">if</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p><br><br></p>
+<hr>
+<h1 id="8-%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B2%902">8. 条件分岐(2)</h1>
+<p>前の章では、If Then を用いて条件分岐を学習しました。<br>
+この章では、複数の条件分岐を記述する方法を学習します。</p>
+<br>
+<h2 id="%E2%97%86select-case-%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88">◆Select Case ステートメント</h2>
+<p>入力値によってセルの色を変えるなど、複数の条件分岐を<br>
+設定する機会は多いと考えられます。その場合、Select Case<br>
+ステートメントを使用する事で、記述をシンプルにできます。</p>
+<p>[基本構文]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> select_case_sample()
+    <span class="hljs-keyword">Select</span> <span class="hljs-keyword">Case</span> 条件式
+
+        <span class="hljs-keyword">Case</span> 式の値<span class="hljs-number">1</span>
+            処理<span class="hljs-number">1</span>
+
+        <span class="hljs-keyword">Case</span> 式の値<span class="hljs-number">2</span>
+            処理<span class="hljs-number">2</span>
+
+        <span class="hljs-keyword">Case</span> 式の値<span class="hljs-number">3</span>
+            処理<span class="hljs-number">3</span>
+
+        <span class="hljs-keyword">Case</span> <span class="hljs-keyword">Else</span>
+            処理(その他)
+
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">Select</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>条件式には、条件分岐を判断するための式を設定し、<br>
+各「式の値」にはその式が返す値を指定します。<br>
+いずれの値も返さない場合は、Case Else の処理が<br>
+実行されます。次の演習で体験しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> test()
+    <span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">6</span>
+    Cells(i, <span class="hljs-number">1</span>).Value = i
+    <span class="hljs-keyword">Next</span> i
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+
+<span class="hljs-keyword">Sub</span> select_case_sample1()
+    <span class="hljs-keyword">Dim</span> j <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    <span class="hljs-keyword">For</span> j = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">6</span>
+        <span class="hljs-keyword">Select</span> <span class="hljs-keyword">Case</span> Cells(j, <span class="hljs-number">1</span>).Value
+            <span class="hljs-keyword">Case</span> <span class="hljs-number">1</span>
+                Cells(j, <span class="hljs-number">2</span>).Interior.Color = vbRed
+            <span class="hljs-keyword">Case</span> <span class="hljs-number">2</span>
+                Cells(j, <span class="hljs-number">2</span>).Interior.Color = vbBlue
+            <span class="hljs-keyword">Case</span> <span class="hljs-number">3</span>
+                Cells(j, <span class="hljs-number">2</span>).Interior.Color = vbYellow
+            <span class="hljs-keyword">Case</span> <span class="hljs-number">4</span>
+                Cells(j, <span class="hljs-number">2</span>).Interior.Color = vbGreen
+            <span class="hljs-keyword">Case</span> <span class="hljs-number">5</span>
+                Cells(j, <span class="hljs-number">2</span>).Interior.Color = vbCyan
+            <span class="hljs-keyword">Case</span> <span class="hljs-keyword">Else</span>
+                Cells(j, <span class="hljs-number">2</span>).Interior.Color = vbBlack
+            <span class="hljs-keyword">End</span> <span class="hljs-keyword">Select</span>
+        <span class="hljs-keyword">Next</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<h2 id="%E2%97%86with-%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88">◆With ステートメント</h2>
+<h3 id="with-%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A8%E3%81%AF">with ステートメントとは</h3>
+<p>同じオブジェクトに対し、連続的に処理を行う際、簡略的に<br>
+記述するためのキーワードです。同一のオブジェクトを With で<br>
+囲み、オブジェクトの記述を省略できます。</p>
+<p>[with ステートメント 1]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> with_sample1
+    <span class="hljs-keyword">with</span> オブジェクト()
+        .プロパティa
+        .プロパティb
+        .プロパティc
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">With</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+上記のポイントは、
+<blockquote>
+<p>・オブジェクト.プロパティ の オブジェクト部分を With の後ろに書く<br>
+・with ~ End With で囲む<br>
+・囲む部分はインデントを入れる</p>
+</blockquote>
+<p>以上の 3 点です。</p>
+<p>また、With ステートメントの中には更に With ステートメントを<br>
+入れ子にして記述する事が出来ます。</p>
+</div>
+<p>[with ステートメント 2]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> with_sample2
+    <span class="hljs-keyword">with</span> オブジェクト()
+        <span class="hljs-keyword">with</span> オブジェクト()
+            .プロパティa
+            .プロパティb
+            .プロパティc
+        <span class="hljs-keyword">End</span> <span class="hljs-keyword">With</span>
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">With</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>それでは次の演習を実行し、With ステートメントを勉強しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、VBEでマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> with_sample1()
+    <span class="hljs-keyword">With</span> Range(<span class="hljs-string">"A1"</span>)
+    .Value = <span class="hljs-string">"Test1"</span>
+    .Font.Name = <span class="hljs-string">"メイリオ"</span>
+    .Font.Bold = <span class="hljs-literal">True</span>
+    .Font.Size = <span class="hljs-number">30</span>
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">With</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> with_sample2()
+    <span class="hljs-keyword">With</span> Range(<span class="hljs-string">"A2"</span>)
+    .Value = <span class="hljs-string">"Test2"</span>
+        <span class="hljs-keyword">With</span> .Font
+            .Name = <span class="hljs-string">"MS ゴシック"</span>
+            .Bold = <span class="hljs-literal">False</span>
+            .Size = <span class="hljs-number">15</span>
+            .Color = RGB(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">End</span> <span class="hljs-keyword">With</span>
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">With</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<h2 id="%E2%97%86-%E3%83%9E%E3%82%AF%E3%83%AD%E8%A8%98%E9%8C%B2">◆ マクロ記録</h2>
+<p>第 1 回 VBA 勉強会の最後に、マクロ記録について解説します。<br>
+マクロ記録とは Excel で行った操作をそのまま記録し、コードを<br>
+作成する機能の事です。操作内容によっては、記録されたコードを<br>
+そのまま利用できる場合もあるため、ひと通りの操作を学習しましょう。</p>
+<p><a href="1">手順</a>開発タブの表示<br>
+ファイル &gt; オプション &gt; リボンのユーザー設定 &gt; 開発のチェック</p>
+<img src="macro01.png">
+<p>↓</p>
+<br>
+<img src="macro02.png">
+<br>
+<p>(2)マクロ記録の開始<br>
+開発タブ &gt; マクロの記録 &gt; マクロの記録 &gt; Excel操作</p>
+<img src="macro03.png">
+<br>
+<p>↓</p>
+<img src="macro04.png">
+<br>
+<p>(3)マクロ記録の終了<br>
+記録終了 &gt; VBE &gt; モジュールに保存されたマクロの確認</p>
+<img src="macro05.png">
+<br>
+<p>VBA 勉強会では、VBA の作成をメインに扱いますが、実際に<br>
+マクロを実装する際やツール作成に有用ですので、自分で<br>
+試してみましょう。また、マクロ記録には With ステートメントが<br>
+頻繁に出てくるため、その辺りも意識するとよいでしょう。</p>
+
+</body>
+</html>
